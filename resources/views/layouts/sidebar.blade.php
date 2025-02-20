@@ -52,22 +52,22 @@
             </a>
             <ul class="{{ request()->routeIs('tickets.*') ? 'sub-menu mm-collapse mm-show' : 'sub-menu' }}" aria-expanded="false">
               <li>
-                <a href="{{ route('tickets.index') }}">All Tickets
+                <a href="{{ route('tickets.index') }}">Tất cả vé
                   <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="totalTickets"></span>
                 </a>
               </li>
               <li>
-                <a href="{{ route('tickets.index', ['status' => 'pending']) }}" class="{{ request()->get('status') == 'pending' ? 'active' : '' }}" key="t-products">Pending Tickets
+                <a href="{{ route('tickets.index', ['status' => 'pending']) }}" class="{{ request()->get('status') == 'pending' ? 'active' : '' }}" key="t-products">Vé đang chờ xử lý
                   <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="pendingTickets"></span>
                 </a>
               </li>
               <li>
-                <a href="{{ route('tickets.index', ['status' => 'approved']) }}" class="{{ request()->get('status') == 'approved' ? 'active' : '' }}" key="t-products">Approved Tickets
+                <a href="{{ route('tickets.index', ['status' => 'approved']) }}" class="{{ request()->get('status') == 'approved' ? 'active' : '' }}" key="t-products">Vé đã duyệt
                   <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="approvedTickets"></span>
                 </a>
               </li>
               <li>
-                <a href="{{ route('tickets.index', ['status' => 'canceled']) }}" class="{{ request()->get('status') == 'canceled' ? 'active' : '' }}" key="t-products">Canceled Tickets
+                <a href="{{ route('tickets.index', ['status' => 'canceled']) }}" class="{{ request()->get('status') == 'canceled' ? 'active' : '' }}" key="t-products">Vé đã hủy
                   <span class="badge rounded-pill bg-info float-end ticket-badge d-none" id="canceledTickets"></span>
                 </a>
               </li>
@@ -77,7 +77,7 @@
           <li class="{{ request()->routeIs('customers.*') ? 'mm-active' : '' }}">
             <a href="{{ route('customers.index') }}" class="waves-effect">
               <i class='bx bx-user'></i>
-              <span key="t-contact">Customers</span>
+              <span key="t-contact">Khách hàng</span>
             </a>
           </li>
         @else

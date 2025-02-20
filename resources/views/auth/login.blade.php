@@ -19,8 +19,8 @@
                 <div class="row">
                   <div class="col-7">
                     <div class="text-primary p-4">
-                      <h5 class="text-primary">Welcome Back !</h5>
-                      <p>Sign in to continue to {{ config('app.name') }}.</p>
+                      <h5 class="text-primary">Chào mừng trở lại !</h5>
+                      <p>Đăng nhập để tiếp tục {{ config('app.name') }}.</p>
                     </div>
                   </div>
                   <div class="col-5 align-self-end">
@@ -66,10 +66,10 @@
                     <div class="mb-3">
                       <div class="float-end">
                         @if (Route::has('password.request'))
-                          <a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a>
+                          <a href="{{ route('password.request') }}" class="text-muted">Quên mật khẩu?</a>
                         @endif
                       </div>
-                      <label class="form-label">Password</label>
+                      <label class="form-label">Mật khẩu</label>
                       <div class="input-group auth-pass-inputgroup @error('password') is-invalid @enderror">
                         <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="userpassword" value="password" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
                         <button class="btn btn-light" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
@@ -84,25 +84,23 @@
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="remember" {{ old('rememberd') ? 'checked' : '' }}>
                       <label class="form-check-label" for="remember">
-                        Remember me
+                        Ghi nhớ
                       </label>
                     </div>
 
                     <div class="d-grid mt-3">
-                      <button class="btn btn-primary waves-effect waves-light" type="submit">Log
-                        In</button>
+                      <button class="btn btn-primary waves-effect waves-light" type="submit">Đăng nhập</button>
                     </div>
                 </form>
-                <button class="btn btn-light btn-sm waves-effect waves-light mt-2" id="radnomeCustomer">Log
-                  In With Randome Customer</button>
+                <button class="btn btn-light btn-sm waves-effect waves-light mt-2" id="radnomeCustomer">Đăng nhập với tư cách khách hàng</button>
                 </div>
 
               </div>
             </div>
             <div class="mt-5 text-center">
               <div>
-                   <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
-                                        Signup now </a> </p>
+                   <p>Bạn chưa có tài khoản? <a href="{{ route('register') }}" class="fw-medium text-primary">
+                    Đăng nhập ngay </a> </p>
                 <p>©
                   <script>
                     document.write(new Date().getFullYear())

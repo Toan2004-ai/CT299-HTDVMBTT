@@ -198,7 +198,7 @@
             </div>
 
             <div class="d-grid mt-3">
-              <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id="{{ Auth::user()->id }}" type="submit">Update Password</button>
+              <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id="{{ Auth::user()->id }}" type="submit">Cập nhật mật khẩu</button>
             </div>
           </form>
         </div>

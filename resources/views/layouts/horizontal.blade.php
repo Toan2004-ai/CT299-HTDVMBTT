@@ -792,7 +792,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myLargeModalLabel">Change Password</h5>
+                <h5 class="modal-title" id="myLargeModalLabel">Thay đổi mật khẩu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
@@ -801,7 +801,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     @csrf
                     <input type="hidden" value="{{ Auth::user()->id }}" id="data_id">
                     <div class="mb-3">
-                        <label for="current_password">Current Password</label>
+                        <label for="current_password">Mật khẩu hiện tại</label>
                         <input id="current-password" type="password"
                             class="form-control @error('current_password') is-invalid @enderror"
                             name="current_password" autocomplete="current_password"
@@ -810,7 +810,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     </div>
 
                     <div class="mb-3">
-                        <label for="newpassword">New Password</label>
+                        <label for="newpassword">Mật khẩu mới</label>
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password"
                             autocomplete="new_password" placeholder="Enter New Password">
@@ -818,7 +818,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     </div>
 
                     <div class="mb-3">
-                        <label for="userpassword">Confirm Password</label>
+                        <label for="userpassword">Xác nhận mật khẩu</label>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                             autocomplete="new_password" placeholder="Enter New Confirm password">
                         <div class="text-danger" id="password_confirmError" data-ajax-feedback="password-confirm"></div>
@@ -826,7 +826,7 @@ aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
                     <div class="mt-3 d-grid">
                         <button class="btn btn-primary waves-effect waves-light UpdatePassword" data-id="{{ Auth::user()->id }}"
-                            type="submit">Update Password</button>
+                            type="submit">Cập nhật mật khẩu</button>
                     </div>
                 </form>
             </div>

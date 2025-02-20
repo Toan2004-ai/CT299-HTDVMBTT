@@ -71,7 +71,7 @@ Route::group(["prefix" => 'dashboard'], function () {
 Route::view('/', 'index');
 
 //Language Translation
-Route::get('/index/{locale}', [HomeController::class, 'lang']);
+Route::get('/index/{locale}', [HomeController::class, 'lang/vn']);
 
 Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
 Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');

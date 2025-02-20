@@ -21,19 +21,19 @@
       {{-- showing the title according to the status of match --}}
       @switch(request()->get('status'))
         @case('pending')
-          Pending Tickets
+        Vé đang chờ xử lý
         @break
 
         @case('approved')
-          Approved Tickets
+        Vé được phê duyệt
         @break
 
-        @case('canceled')
-          Canceled Tickets
+        @case('canceled')     
+        Vé đã hủy
         @break
 
         @default
-          All Tickets
+          Tất cả vé
       @endswitch
     @endslot
   @endcomponent
@@ -116,12 +116,12 @@
             <thead class="table-light">
               <tr>
                 <th>#</th>
-                <th>Customer Name</th>
+                <th>Tên khách hàng</th>
                 <th> @lang('translation.flight.flight_number')</th>
-                <th>Route</th>
-                <th>Time</th>
-                <th>Seat Number</th>
-                <th>Status</th>
+                <th>Tuyến đường</th>
+                <th>Thời gian</th>
+                <th>Số ghế</th>
+                <th>Trạng thái</th>
                 <th> @lang('translation.actions')</th>
               </tr>
             </thead>
@@ -133,7 +133,7 @@
               <form method="POST" class="w-100" id="chanegStatusForm" action="">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change Ticket Status</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Thay đổi trạng thái vé</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -142,7 +142,7 @@
                       <div class="form-check form-radio-outline form-radio-success mb-3">
                         <input class="form-check-input" type="radio" name="status" value="approve" id="accept" checked="">
                         <label class="form-check-label" for="accept">
-                          Approve
+                          Đã duyệt
                         </label>
                       </div>
                       <div class="form-check form-radio-outline form-radio-danger">

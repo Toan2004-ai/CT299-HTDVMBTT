@@ -53,7 +53,7 @@
 
 <li>
   <a href="javascript: void(0);" class="waves-effect">
-    <i class="bx bx-calendar"></i><span class="badge rounded-pill bg-success float-end">New</span>
+    <i class="bx bx-calendar"></i><span class="badge rounded-pill bg-success float-end">Mới</span>
     <span key="t-dashdoards">@lang('translation.Calendars')</span>
   </a>
   <ul class="sub-menu" aria-expanded="false">

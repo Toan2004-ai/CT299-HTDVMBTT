@@ -101,10 +101,10 @@
               <tr>
                 <th>#</th>
                 <th> @lang('translation.flight.flight_number')</th>
-                <th>Route</th>
-                <th>Time</th>
-                <th>Seat Number</th>
-                <th>Status</th>
+                <th>Tuyến đường</th>
+                <th>Thời gian</th>
+                <th>Số ghế</th>
+                <th>Trạng thái</th>
                 <th> @lang('translation.actions')</th>
               </tr>
             </thead>

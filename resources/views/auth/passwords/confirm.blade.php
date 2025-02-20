@@ -1,7 +1,7 @@
 @extends('layouts.master-without-nav')
 
 @section('title')
-    Confirm Password
+    Xác nhận mật khẩu
 @endsection
 
 @section('css')
@@ -33,7 +33,7 @@
 
                                                     <h4 class="mb-3"><i
                                                             class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span
-                                                            class="text-primary">5k</span>+ Satisfied clients</h4>
+                                                            class="text-primary">5k</span>+ Khách hàng hài lòng </h4>
 
                                                     <div dir="ltr">
                                                         <div class="owl-carousel owl-theme auth-review-carousel"
@@ -97,8 +97,8 @@
                                     <div class="my-auto">
 
                                         <div>
-                                            <h5 class="text-primary"> Confirm Password</h5>
-                                            <p class="text-muted">Re-Password with Skote.</p>
+                                            <h5 class="text-primary"> Xác nhận mật khẩu </h5>
+                                            <p class="text-muted">Đặt lại mật khẩu</p>
                                         </div>
 
                                         <div class="mt-4">
@@ -110,10 +110,10 @@
                                                     <div class="float-end">
                                                         @if (Route::has('password.request'))
                                                             <a href="{{ route('password.request') }}"
-                                                                class="text-muted">Forgot password?</a>
+                                                                class="text-muted">Quên mật khẩu?</a>
                                                         @endif
                                                     </div>
-                                                    <label for="userpassword">Password</label>
+                                                    <label for="userpassword">Mật khẩu</label>
                                                     <input type="password"
                                                         class="form-control @error('password') is-invalid @enderror"
                                                         name="password" id="userpassword" placeholder="Enter password">
@@ -126,13 +126,13 @@
 
                                                 <div class="text-end">
                                                     <button class="btn btn-primary w-md waves-effect waves-light"
-                                                        type="submit">Confirm Password</button>
+                                                        type="submit">Xác nhận mật khẩu</button>
                                                 </div>
 
                                             </form>
                                             <div class="mt-5 text-center">
                                                 <p>Remember It ? <a href="{{ url('login') }}"
-                                                        class="font-weight-medium text-primary"> Sign In here</a> </p>
+                                                        class="font-weight-medium text-primary">Đăng nhập tại đây</a> </p>
                                             </div>
                                         </div>
                                     </div>

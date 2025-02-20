@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('frontend/style.css') }}" />
-  <title>{{ config('app.name') }}</title>
+  <title>VietNam{{ config('app.name') }} - Đi đu đưa đi</title>
+  <link rel="icon" type="image/png" href="{{ asset('frontend/assets/Lotus.png') }}">
 </head>
 
 <body>
@@ -19,26 +20,26 @@
       <video muted autoplay loop class="hero" src="{{ asset('frontend/assets/video.mp4') }}"></video>
       <nav>
         <div class="logo">
-          <img src="{{ asset('frontend/assets/logo.png') }}" alt="mind & body" style="width: 15rem" />
+          <img src="{{ asset('frontend/assets/logo.webp') }}" alt="mind & body" style="width: 10rem" />
           {{-- <h1>SULAYMANIYAH INTERNATIONAL AIRPORT</h1> --}}
         </div>
         <div class="links">
           @auth
             @if (Auth::user()->is_admin)
-              <a href="{{ route('root') }}">Dashbaord</a>
+              <a href="{{ route('root') }}">Admin</a>
             @else
-              <a href="{{ route('root') }}">Dashbaord</a>
-              <a href="{{ route('tickets.flights') }}">Book a Flight</a>
-              <a href="{{ route('tickets.userTickets') }}">My Booking</a>
+              <a href="{{ route('root') }}">Thông tin</a>
+              <a href="{{ route('tickets.flights') }}">Đặt vé</a>
+              <a href="{{ route('tickets.userTickets') }}">Vé của tôi</a>
             @endif
             <a href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="bx bx-power-off font-size-16 me-1 text-danger align-middle"></i> @lang('translation.Logout')</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               @csrf
             </form>
           @else
-            <a href="{{ route('login') }}">Login</a>
+            <a href="{{ route('login') }}">Đăng Nhập</a>
             @if (Route::has('register'))
-              <a href="{{ route('register') }}">Register</a>
+              <a href="{{ route('register') }}">Đăng ký</a>
             @endif
           @endauth
         </div>
@@ -51,25 +52,25 @@
       </nav>
       <div class="primary-overlay">
         <div class="selling-point">
-          <h2>Let your mind breathe.</h2>
+          <h2>Đi là nhớ</h2>
           <h3>
-            The world is a book and those who do not travel read only one page.
+            Hãy cùng nhau trải nghiệm chuyến đi nào
           </h3>
           <div class="ctas">
             @auth
               <button class="cta-main">
                 @if (Auth::user()->is_admin)
-                  <a href="{{ route('root') }}">Dashboard</a>
+                  <a href="{{ route('root') }}">Admin</a>
                 @else
-                  <a href="{{ route('tickets.flights') }}">Book A Flight</a>
+                  <a href="{{ route('tickets.flights') }}">Đặt vé ngay</a>
                 @endif
               </button>
             @else
               <button class="cta-main">
-                <a href="{{ route('tickets.flights') }}">Book A Flight</a>
+                <a href="{{ route('tickets.flights') }}">Đặt vé ngay</a>
               </button>
               <button class="cta-sec">
-                <a href="{{ route('register') }}">Sign up</a>
+                <a href="{{ route('register') }}">Đăng ký</a>
               </button>
             @endauth
           </div>
@@ -80,8 +81,8 @@
 
     <section class="classes">
       <div class="classes-description">
-        <h2>Placees waiting for you</h2>
-        <h3>It's time to heal your mind and body</h3>
+        <h2>Những nơi đang chờ bạn</h2>
+        <h3>Nơi chữa lành và thư giãn dành cho bạn</h3>
       </div>
       <div class="videos">
         <div class="pilates">
@@ -100,12 +101,11 @@
     </section>
     <section class="about">
       <div class="our-story">
-        <h2>About Us</h2>
+        <h2>Về chúng tôi</h2>
         <p>
-          Always a student, Janet has immersed herself in the ancient practices
-          of yoga for over thirty years. A global yoga teacher, she shares the
-          teachings from the heart. Through curiosity, devotion, and dedication
-          she creates a unique approach to living yoga.
+          Chúng tôi mang đến trải nghiệm bay an toàn, tiện lợi và thoải mái cho mọi hành khách. 
+          Với đội ngũ chuyên nghiệp và dịch vụ tận tâm, chúng tôi không ngừng nâng cao chất lượng 
+          để mỗi chuyến đi không chỉ là di chuyển, mà còn là hành trình trọn vẹn với những khoảnh khắc đáng nhớ.
         </p>
       </div>
       <img src="{{ asset('frontend/assets/our-story.jpg') }}" alt="our-story" />

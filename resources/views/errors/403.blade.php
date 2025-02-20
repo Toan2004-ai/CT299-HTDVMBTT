@@ -16,7 +16,7 @@
           <div class="col-lg-12">
             <div class="mb-5 text-center">
               <h1 class="display-2 fw-medium">4<i class="bx bx-buoy bx-spin text-primary display-3"></i>3</h1>
-              <h4 class="text-uppercase">Sorry, you are not suppose to be in this page</h4>
+              <h4 class="text-uppercase">Xin lỗi, lẽ ra bạn không nên vào trang này</h4>
               <div class="mt-5 text-center">
                 <a class="btn btn-primary waves-effect waves-light" href="{{ auth()->user()->is_admin ? route('root') : route('profile') }}">Back to {{ auth()->user()->is_admin ? 'Dashbaord' : 'Profile' }}</a>
               </div>

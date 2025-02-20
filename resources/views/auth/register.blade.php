@@ -19,7 +19,7 @@
                 <div class="row">
                   <div class="col-7">
                     <div class="text-primary p-4">
-                      <h5 class="text-primary">Register Yourself</h5>
+                      <h5 class="text-primary">Đăng ký chính bạn</h5>
                     </div>
                   </div>
                   <div class="col-5 align-self-end">
@@ -50,7 +50,7 @@
                   <form class="needs-validation" novalidate method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                      <label for="name" class="form-label">Name</label>
+                      <label for="name" class="form-label">Họ Tên</label>
                       <input type="text" class="form-control" id="name" name='name' placeholder="Enter name" value="{{ old('name') }}" required>
                       <div class="valid-feedback">
                         @lang('validation.good')
@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="phone" class="form-label">Phone</label>
+                      <label for="phone" class="form-label">Số điện thoại</label>
                       <input type="tel" class="form-control" id="phone" name='phone' placeholder="Enter phone" value="{{ old('phone') }}" required>
                       <div class="valid-feedback">
                         @lang('validation.good')
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="address" class="form-label">Address</label>
+                      <label for="address" class="form-label">Địa chỉ</label>
                       <input type="text" class="form-control" id="address" name='address' placeholder="Enter address" value="{{ old('address') }}" required>
                       <div class="valid-feedback">
                         @lang('validation.good')
@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
+                      <label for="password" class="form-label">Mật khẩu</label>
                       <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                       <div class="valid-feedback">
                         @lang('validation.good')
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="password_confirmation" class="form-label">Confirm Password</label>
+                      <label for="password_confirmation" class="form-label">Xác nhận mật khẩu</label>
                       <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Enter password Again" required>
                       <div class="valid-feedback">
                         @lang('validation.good')
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="d-grid mt-4">
-                      <button class="btn btn-primary waves-effect waves-light" type="submit">Register</button>
+                      <button class="btn btn-primary waves-effect waves-light" type="submit">Đăng ký</button>
                     </div>
                   </form>
                 </div>
@@ -126,7 +126,7 @@
             <div class="mt-5 text-center">
 
               <div>
-                <p>Already have an account ? <a href="{{ route('login') }}" class="fw-medium text-primary">
+                <p>Bạn đã có tài khoản chưa? <a href="{{ route('login') }}" class="fw-medium text-primary">
                     Login</a> </p>
                 <p>©
                   <script>

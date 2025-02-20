@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  Customers
+  Khách hàng
 @endsection
 
 @section('css')
@@ -12,13 +12,13 @@
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      Customers
+      Khách hàng
     @endslot
     @slot('li_2')
       {{ route('customers.index') }}
     @endslot
     @slot('title')
-      Customers List
+      Danh sách khách hàng
     @endslot
   @endcomponent
 
@@ -30,10 +30,10 @@
             <thead class="table-light">
               <tr>
                 <th>#</th>
-                <th>Name</th>
+                <th>Họ tên</th>
                 <th>Email</th>
-                <th>Phone</th>
-                <th>No Of Tickets</th>
+                <th>Số điện thoại</th>
+                <th>Số lượng vé</th>
                 <th> @lang('translation.created_at')</th>
                 <th> @lang('translation.actions')</th>
               </tr>

@@ -14,7 +14,7 @@
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      Customer
+      Khách hàng
     @endslot
     @slot('li_2')
       {{ route('customers.index') }}
@@ -36,7 +36,7 @@
                   <table class="table-borderless mb-0 table">
                     <tbody>
                       <tr>
-                        <th scope="row" style="width: 400px;">Name</th>
+                        <th scope="row" style="width: 400px;">Họ tên</th>
                         <td>{{ $user->name }}</td>
                       </tr>
                       <tr>
@@ -44,16 +44,16 @@
                         <td>{{ $user->email }}</td>
                       </tr>
                       <tr>
-                        <th scope="row" style="width: 400px;">Phone</th>
+                        <th scope="row" style="width: 400px;">Số điện thoại</th>
                         <td>{{ $user->phone }}</td>
                       </tr>
                       <tr>
-                        <th scope="row" style="width: 400px;">Address</th>
+                        <th scope="row" style="width: 400px;">Địa chỉ</th>
                         <td>{{ $user->address }}</td>
                       </tr>
 
                       <tr>
-                        <th scope="row" style="width: 400px;">No Of Tickets</th>
+                        <th scope="row" style="width: 400px;">Số lượng vé</th>
                         <td>
                           <span class="badge badge-pill badge-soft-info font-size-14">{{ $user->tickets()->count() }}</span>
                         </td>
@@ -79,7 +79,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h5>User Tickets</h5>
+          <h5>Vé người dùng</h5>
           <div class="d-flex justify-content-end mb-4" id="action_btns">
           </div>
           <table id="datatable" class="table-hover table-bordered nowrap w-100 table">
@@ -89,7 +89,7 @@
                 <th> @lang('translation.flight.flight_number')</th>
                 <th> @lang('translation.flight.origin')</th>
                 <th> @lang('translation.flight.time')</th>
-                <th> Status</th>
+                <th> Trạng thái</th>
                 <th> @lang('translation.actions')</th>
               </tr>
             </thead>

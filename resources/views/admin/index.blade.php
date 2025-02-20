@@ -12,10 +12,10 @@
 @section('content')
   @component('components.breadcrumb')
     @slot('li_1')
-      Dashboards
+      Tổng quan
     @endslot
     @slot('title')
-      Dashboard
+      Tổng quan
     @endslot
   @endcomponent
 
@@ -172,7 +172,7 @@
                   <thead class="table-light">
                     <tr>
                       <th class="align-middle">#</th>
-                      <th class="align-middle">@lang('translation.airline.name')</th>
+                      <th class="align-middle">@lang('translation.airline.name') </th>
                       <th class="align-middle">@lang('translation.airline.code')</th>
                       <th class="align-middle">@lang('translation.airline.no_of_flights')</th>
                       <th class="align-middle">@lang('translation.airline.no_of_planes')</th>

@@ -11,7 +11,8 @@ use App\Http\Controllers\Admin\{
     PlaneController,
     FlightController,
     ProfileController,
-    TicketController
+    TicketController,
+    SeatSelectionController
 };
 
 use App\Http\Controllers\SandboxController;
@@ -60,6 +61,10 @@ Route::group(["prefix" => 'dashboard'], function () {
             //tickets
             Route::get('tickets', [TicketController::class, 'index'])->name('tickets.index');
             Route::post('tickets/change-status/{ticket}', [TicketController::class, 'changeStatus'])->name('tickets.changeStatus');
+            
+            //seats
+            Route::get('tickets/seat_selection/{flight_id}', [SeatSelectionController::class, 'show'])->name('tickets.seat_selection');
+            Route::post('tickets/seat_selection/{flight_id}/booking', [SeatSelectionController::class, 'book'])->name('tickets.booking');
 
             //customers
             Route::get("customers", [CustomerController::class, "index"])->name('customers.index');

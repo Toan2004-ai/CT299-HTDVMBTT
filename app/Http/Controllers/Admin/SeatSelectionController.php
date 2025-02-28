@@ -52,4 +52,34 @@ public function bookSeat(Request $request, $flight_id)
 
     return redirect()->route('tickets.confirmation')->with('success', 'Bạn đã đặt ghế thành công!');
 }
+
+
+public function showForCustomer($flight_id)
+{
+    $flight = Flight::findOrFail($flight_id);
+    $seats = Seat::where('flight_id', $flight_id)->get();
+
+    return view('customer.tickets.seat_selection', compact('flight', 'seats'));
+}
+
+// Xử lý đặt ghế cho khách hàng
+public function bookForCustomer(Request $request, $flight_id)
+{
+    $selectedSeats = $request->input('seats', []);
+
+    if (empty($selectedSeats)) {
+        return redirect()->route('customer.tickets.seat_selection', ['flight_id' => $flight_id])
+            ->with('success', 'Bạn hãy chọn chỗ ngồi trước khi tiếp tục!');
+    }
+
+    foreach ($selectedSeats as $seatNumber) {
+        Seat::updateOrCreate(
+            ['flight_id' => $flight_id, 'seat_number' => $seatNumber],
+            ['status' => 'booked', 'user_id' => Auth::id()]
+        );
+    }
+
+    return redirect()->route('customer.tickets.seat_selection', ['flight_id' => $flight_id])->with('success', 'Bạn đã đặt chỗ thành công!');
+}
+
 }

@@ -12,7 +12,9 @@ use App\Http\Controllers\Admin\{
     FlightController,
     ProfileController,
     TicketController,
-    SeatSelectionController
+    SeatSelectionController,
+    FoodController,
+    FinalController
 };
 
 use App\Http\Controllers\SandboxController;
@@ -36,7 +38,17 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::post('tickets/book', [TicketController::class, 'book'])->name('tickets.book');
         Route::post('tickets/cancel-flight', [TicketController::class, 'cancel'])->name('tickets.cancel');
 
+        //customers
+        Route::get('/customer/tickets/seat_selection/{flight_id}', [SeatSelectionController::class, 'showForCustomer'])->name('customer.tickets.seat_selection');
+        Route::post('/customer/tickets/seat_selection/{flight_id}/booking', [SeatSelectionController::class, 'bookForCustomer'])->name('customer.tickets.booking')->middleware('auth');
 
+        //foods
+        Route::get('/customer/food', [FoodController::class, 'indexs'])->name('customer.food.index');
+        Route::post('/customer/food', [FoodController::class, 'store'])->name('customer.food.store');
+        Route::post('/customer/food/order', [FoodController::class, 'orderOfcustomer'])->name('customer.food.order');
+
+        //final
+        Route::get('/customer/final', [FinalController::class, 'index'])->name('customer.final.index');
 
         /* ================== ADMIN ROUTES ================== */
         Route::group(['middleware' => 'admin'], function () {

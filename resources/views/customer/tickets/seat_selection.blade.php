@@ -23,7 +23,7 @@
 
     <!-- Hiển thị sơ đồ ghế -->
     <div class="display-seats">
-        <form method="POST" action="{{ route('tickets.booking', ['flight_id' => $flight->id]) }}">
+        <form method="POST" action="{{ route('customer.tickets.booking', ['flight_id' => $flight->id]) }}">
             @csrf
             <table class="all-the-seats">
                 <tr class='rowno'>
@@ -46,8 +46,6 @@
                                 $seat = collect($seats)->where('seat_number', $seatNumber)->first();
                                 $isBooked = $seat && $seat->status == 'booked';
                                 $seatClass = ($i >= 1 && $i <= 6) ? 'premium-seats' : (($i == 12 || $i == 13) ? 'exit-row' : 'economy-seats');
-
-
                             @endphp
                             <td class="{{ $seatClass }}">
                                 <input type="checkbox" name="seats[]" value="{{ $seatNumber }}" id="seat-{{ $seatNumber }}" hidden {{ $isBooked ? 'disabled' : '' }}>
@@ -61,7 +59,6 @@
                                 $seat = collect($seats)->where('seat_number', $seatNumber)->first();
                                 $isBooked = $seat && $seat->status == 'booked';
                                 $seatClass = ($i >= 1 && $i <= 6) ? 'premium-seats' : (($i == 12 || $i == 13) ? 'exit-row' : 'economy-seats');
-
                             @endphp
                             <td class="{{ $seatClass }}">
                                 <input type="checkbox" name="seats[]" value="{{ $seatNumber }}" id="seat-{{ $seatNumber }}" hidden {{ $isBooked ? 'disabled' : '' }}>
@@ -72,8 +69,13 @@
                     </tr>
                 @endfor
             </table>
+            
+            
 
-            <input type="submit" name="submit" value="Tiếp tục" class="continue-button">
+            <input type="submit" name="submit" value="Hoàn tất" class="continue-button">
+        </form>
+        <form method="GET" class="button-group" action="{{ route('customer.food.index') }}">
+            <input type="submit" name="submit" value=">>" class="complete-button">
         </form>
     </div>
 </main>
@@ -101,11 +103,6 @@
             justify-content: center;
             align-items: center;
         }
-        
-        .premium-seats {
-        background-color: #b0e0e6 !important;
-        }
-
 
         .legend i {
             font-size: 24px;
@@ -174,6 +171,27 @@
         }
 
         .continue-button:hover {
+            background-color: #333;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .complete-button {
+            background-color: black;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 1410px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .complete-button:hover {
             background-color: #333;
         }
 

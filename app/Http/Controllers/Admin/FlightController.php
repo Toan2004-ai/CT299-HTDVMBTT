@@ -10,6 +10,7 @@ use App\Models\Airline;
 use App\Models\Airport;
 use App\Models\Plane;
 use DataTables;
+use Carbon\Carbon;
 
 class FlightController extends Controller
 {
@@ -48,11 +49,20 @@ class FlightController extends Controller
                     $td .= "</td>";
                     return $td;
                 })
+                ->editColumn('date', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDate($row->departure) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDate($row->arrival) . '</span></p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
                 ->editColumn('time', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="">';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDateWithTimezone($row->departure) . '</span></p>';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDateWithTimezone($row->arrival) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure_time') . ': <span class="fw-normal">' . Carbon::parse($row->departure_time)->format('H:i') . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival_time') . ': <span class="fw-normal">' . Carbon::parse($row->arrival_time)->format('H:i') . '</span></p>';
                     $td .= "</div>";
                     $td .= "</td>";
                     return $td;
@@ -88,37 +98,49 @@ class FlightController extends Controller
     }
 
     public function store(FlightRequest $request)
-    {
-        try {
-            $validated = $request->validated();
-            // find plane 
-            $plane = Plane::find($validated['plane_id']);
+{
+    try {
+        $validated = $request->validated();
+        $plane = Plane::find($validated['plane_id']);
 
-            Flight::create([
-                "flight_number" => rand(1000, 9999),
-                "airline_id" => $validated['airline_id'],
-                "plane_id" => $validated['plane_id'],
-                "origin_id" => $validated['origin_id'],
-                "destination_id" => $validated['destination_id'],
-                "departure" => $validated['departure'],
-                "arrival" => $validated['arrival'],
-                "seats" => $plane->capacity,
-                "remain_seats" => $plane->capacity,
-                "status" => 1,
-                "price" => $validated['price'],
-            ]);
+        // Kết hợp ngày và giờ khởi hành
+        $departureDateTime = Carbon::parse("{$validated['departure']} {$validated['departure_time']}");
 
-            return redirect()->route('flights.index')->with([
-                "message" =>  __('messages.success'),
-                "icon" => "success",
-            ]);
-        } catch (\Throwable $th) {
+        // Kiểm tra xem chuyến bay có nằm trong quá khứ không
+        if ($departureDateTime->isPast()) {
             return redirect()->back()->with([
-                "message" =>  $th->getMessage(),
+                "message" => "Không thể tạo chuyến bay trong quá khứ!",
                 "icon" => "error",
             ]);
         }
+
+        Flight::create([
+            "flight_number" => rand(1000, 9999),
+            "airline_id" => $validated['airline_id'],
+            "plane_id" => $validated['plane_id'],
+            "origin_id" => $validated['origin_id'],
+            "destination_id" => $validated['destination_id'],
+            "departure" => $validated['departure'],
+            "arrival" => $validated['arrival'],
+            "departure_time" => $validated['departure_time'], 
+            "arrival_time" => $validated['arrival_time'],  
+            "seats" => $plane->capacity,
+            "remain_seats" => $plane->capacity,
+            "status" => 1,
+            "price" => $validated['price'],
+        ]);
+
+        return redirect()->route('flights.index')->with([
+            "message" =>  __('messages.success'),
+            "icon" => "success",
+        ]);
+    } catch (\Throwable $th) {
+        return redirect()->back()->with([
+            "message" =>  $th->getMessage(),
+            "icon" => "error",
+        ]);
     }
+}
 
     public function edit(Flight $flight)
     {
@@ -129,37 +151,50 @@ class FlightController extends Controller
     }
 
     public function update(FlightRequest $request, Flight $flight)
-    {
-        try {
-            $validated = $request->validated();
-            // find plane 
-            $plane = Plane::find($validated['plane_id']);
+{
+    try {
+        $validated = $request->validated();
+        $plane = Plane::find($validated['plane_id']);
 
-            $flight->update([
-                "flight_number" => rand(1000, 9999),
-                "airline_id" => $validated['airline_id'],
-                "plane_id" => $validated['plane_id'],
-                "origin_id" => $validated['origin_id'],
-                "destination_id" => $validated['destination_id'],
-                "departure" => $validated['departure'],
-                "arrival" => $validated['arrival'],
-                "seats" => $plane->capacity,
-                "remain_seats" => $plane->capacity,
-                "status" => 1,
-                "price" => $validated['price'],
-            ]);
+        // Kết hợp ngày và giờ khởi hành
+        $departureDateTime = Carbon::parse("{$validated['departure']} {$validated['departure_time']}");
 
-            return redirect()->route('flights.index')->with([
-                "message" =>  __('messages.update'),
-                "icon" => "success",
-            ]);
-        } catch (\Throwable $th) {
+        // Kiểm tra xem chuyến bay có nằm trong quá khứ không
+        if ($departureDateTime->isPast()) {
             return redirect()->back()->with([
-                "message" =>  $th->getMessage(),
+                "message" => "Không thể cập nhật chuyến bay về quá khứ!",
                 "icon" => "error",
             ]);
         }
+
+        $flight->update([
+            "flight_number" => rand(1000, 9999),
+            "airline_id" => $validated['airline_id'],
+            "plane_id" => $validated['plane_id'],
+            "origin_id" => $validated['origin_id'],
+            "destination_id" => $validated['destination_id'],
+            "departure" => $validated['departure'],
+            "arrival" => $validated['arrival'],
+            "departure_time" => $validated['departure_time'], 
+            "arrival_time" => $validated['arrival_time'],
+            "seats" => $plane->capacity,
+            "remain_seats" => $plane->capacity,
+            "status" => 1,
+            "price" => $validated['price'],
+        ]);
+
+        return redirect()->route('flights.index')->with([
+            "message" =>  __('messages.update'),
+            "icon" => "success",
+        ]);
+    } catch (\Throwable $th) {
+        return redirect()->back()->with([
+            "message" =>  $th->getMessage(),
+            "icon" => "error",
+        ]);
     }
+}
+
 
     public function destroy(Flight $flight)
     {

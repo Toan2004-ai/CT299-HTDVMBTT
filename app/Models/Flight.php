@@ -8,7 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Flight extends Model
 {
     protected $guarded = [];
-
+    protected $fillable = [
+        'flight_number',
+        'airline_id',
+        'plane_id',
+        'origin_id',
+        'destination_id',
+        'departure',
+        'arrival',
+        'departure_time', // Đảm bảo có cột này
+        'arrival_time',   // Đảm bảo có cột này
+        'seats',
+        'remain_seats',
+        'price',
+        'status',
+    ];
+    
+    
     protected $with = ['airline:id,name', "plane:id,code", 'origin:id,name', 'destination:id,name'];
 
     public function airline()

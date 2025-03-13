@@ -102,8 +102,8 @@
                 <th>#</th>
                 <th> @lang('translation.flight.flight_number')</th>
                 <th>Tuyến đường</th>
-                <th>Thời gian</th>
-                <th>Số ghế</th>
+                <th> @lang('translation.flight.date')</th>
+                <th> @lang('translation.flight.time')</th>
                 <th>Trạng thái</th>
                 <th> @lang('translation.actions')</th>
               </tr>
@@ -174,6 +174,8 @@
             d.airline = $("#airline").find(":selected").val();
             d.departure = $("#departure").val();
             d.arrival = $("#arrival").val();
+            d.departure_time = $("#departure_time").val();
+            d.arrival_time = $("#arrival_time").val();
           }
         },
         columnDefs: [{
@@ -192,14 +194,22 @@
             searchable: false,
           },
           {
+            data: 'date',
+            render: function (data, type, row) {
+                return $('<div>').html(data).text(); // Xử lý HTML
+            }
+          },
+          {
             data: 'time',
             searchable: false,
           },
           {
-            data: 'seat_number'
-          },
-          {
-            data: 'status'
+            data: 'status',
+            render: function(data, type, row) {
+              let statusBadge = `<span class="badge bg-warning">${data}</span>`;
+              let changePageButton = `<button class="btn btn-primary btn-sm change-page-btn btn-seat" data-flight-id="${row.flight_id}">Đặt chỗ ngồi</button>`;
+              return `<div class="d-flex justify-content-between align-items-center">${statusBadge} ${changePageButton}</div>`;
+            }
           },
           {
             data: 'action',
@@ -218,6 +228,13 @@
   </script>
 
   <script>
+    
+    $(document).on('click', '.change-page-btn', function() {
+    let flightId = $(this).data('flight-id');
+    let url = `http://127.0.0.1:8000/dashboard/customer/tickets/seat_selection/${flightId}`;
+    window.location.href = url; // Điều hướng đến trang chọn ghế
+});
+
     $(document).on('click', '.cancel-btn', function(e) {
       e.preventDefault();
       const id = $(this).data('id');
@@ -279,4 +296,22 @@
       });
     })
   </script>
+  <style>
+    .btn-seat {
+    background-color: white !important; /* Nền trắng */
+    color: #0d6efd !important; /* Chữ xanh dương đậm */
+    border: 1px solid #0d6efd !important; /* Viền xanh dương đậm */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+    .badge.bg-warning {
+    background-color: white !important; /* Nền trắng */
+    color: #dc3545 !important; /* Chữ đỏ */
+    border: 1px solid #dc3545; /* Viền đỏ */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+  </style>
 @endsection

@@ -20,6 +20,8 @@ class FlightRequest extends FormRequest
             'destination_id'        => ['required', 'exists:airports,id'],
             'departure'        => ['required'],
             'arrival'        => ['required'],
+            "departure_time" => "required|date_format:H:i",
+            "arrival_time" => "required|date_format:H:i",
             'price'        => ['required']
         ];
     }

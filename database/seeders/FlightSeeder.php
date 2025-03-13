@@ -6,7 +6,6 @@ use App\Models\Airline;
 use App\Models\City;
 use App\Models\Flight;
 use Faker\Factory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class FlightSeeder extends Seeder
@@ -21,6 +20,9 @@ class FlightSeeder extends Seeder
         foreach ($airlines->cursor() as $airline) {
             $departure  = $faker->dateTimeBetween('now', '+2 days');
             $arrival    = $faker->dateTimeBetween($departure, '+2 days');
+
+            $departure_time = $faker->dateTimeBetween($departure, $departure->format('Y-m-d') . ' 23:59:59')->format('H:i:s');  
+            $arrival_time = $faker->dateTimeBetween($arrival, $arrival->format('Y-m-d') . ' 23:59:59')->format('H:i:s'); 
             foreach ($airline->planes as $plane) {
                 Flight::query()->create([
                     "flight_number" => $faker->unique()->numberBetween(100, 999),
@@ -34,6 +36,8 @@ class FlightSeeder extends Seeder
                     "remain_seats" => rand(1, $plane->capacity),
                     "price" => rand(100, 1000),
                     'status' => $faker->boolean(),
+                    "departure_time" => $departure_time,
+                    "arrival_time" => $arrival_time,
                 ]);
             }
         }

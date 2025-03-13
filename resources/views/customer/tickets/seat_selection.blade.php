@@ -18,7 +18,7 @@
     </div>
 
     <div class="legend">
-        Giá vé 1 ghế thường = 200$ <br>  Giá vé 1 ghế thương gia = 600$
+        Giá vé 1 ghế thường = 2000000 VND <br>  Giá vé 1 ghế thương gia = 6000000 VND
     </div>
 
     <!-- Hiển thị sơ đồ ghế -->

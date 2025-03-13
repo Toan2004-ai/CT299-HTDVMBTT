@@ -119,8 +119,8 @@
                 <th>Tên khách hàng</th>
                 <th> @lang('translation.flight.flight_number')</th>
                 <th>Tuyến đường</th>
-                <th>Thời gian</th>
-                <th>Số ghế</th>
+                <th> @lang('translation.flight.date')</th>
+                <th> @lang('translation.flight.time')</th>
                 <th>Trạng thái</th>
                 <th> @lang('translation.actions')</th>
               </tr>
@@ -225,6 +225,8 @@
             d.airline = $("#airline").find(":selected").val();
             d.departure = $("#departure").val();
             d.arrival = $("#arrival").val();
+            d.departure_time = $("#departure_time").val();
+            d.arrival_time = $("#arrival_time").val();
           }
         },
         columnDefs: [{
@@ -250,12 +252,14 @@
             sortable: false,
           },
           {
-            data: 'time',
-            searchable: false,
-            sortable: false,
+            data: 'date',
+            render: function (data, type, row) {
+                return $('<div>').html(data).text(); // Xử lý HTML
+            }
           },
           {
-            data: 'seat_number'
+            data: 'time',
+            searchable: false
           },
           {
             data: 'status'

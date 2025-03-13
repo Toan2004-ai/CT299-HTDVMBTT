@@ -173,6 +173,8 @@
             d.airline = $("#airline").find(":selected").val();
             d.departure = $("#departure").val();
             d.arrival = $("#arrival").val();
+            d.departure_time = $("#departure_time").val();
+            d.arrival_time = $("#arrival_time").val();
           }
         },
         columnDefs: [{

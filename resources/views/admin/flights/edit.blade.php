@@ -75,18 +75,37 @@
 
                 {{-- time (departure, arival) --}}
                 <div class="row mb-4">
-                  <label for="loan_limit" class="col-sm-3 col-form-label">@lang('translation.flight.time')</label>
-                  <div class="col-sm-9">
-                    <div class="input-daterange input-group" id="datepicker" data-date-format="yyyy-m-d" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker'>
-                      <input type="date" class="form-control filter-input" id="departure" name="departure" placeholder="@lang('translation.flight.departure')" />
-                      <input type="date" class="form-control filter-input" id="arrival" name="arrival" placeholder="@lang('translation.flight.arrival')" />
-
-                      <div class="valid-feedback">
-                        @lang('validation.good')
-                      </div>
-                      <div class="invalid-feedback">
-                        @lang('validation.required', ['attribute' => __('translation.flight.time')])
-                      </div>
+                  <label class="col-sm-3 col-form-label">@lang('translation.flight.date')</label>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control filter-input" id="departure" name="departure" placeholder="@lang('translation.flight.departure')" required>
+                    <small class="text-muted">@lang('translation.flight.departure')</small>
+                    <div class="invalid-feedback">
+                      @lang('validation.required', ['attribute' => __('translation.flight.departure')])
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="date" class="form-control filter-input" id="arrival" name="arrival" placeholder="@lang('translation.flight.arrival')" required>
+                    <small class="text-muted">@lang('translation.flight.arrival')</small>
+                    <div class="invalid-feedback">
+                      @lang('validation.required', ['attribute' => __('translation.flight.arrival')])
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row mb-4">
+                  <label class="col-sm-3 col-form-label">@lang('translation.flight.time')</label>
+                  <div class="col-sm-4">
+                    <input type="time" class="form-control" id="departure_time" name="departure_time" required>
+                    <small class="text-muted">@lang('translation.flight.departure_time')</small>
+                    <div class="invalid-feedback">
+                      @lang('validation.required', ['attribute' => __('translation.flight.departure_time')])
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <input type="time" class="form-control" id="arrival_time" name="arrival_time" required>
+                    <small class="text-muted">@lang('translation.flight.arrival_time')</small>
+                    <div class="invalid-feedback">
+                      @lang('validation.required', ['attribute' => __('translation.flight.arrival_time')])
                     </div>
                   </div>
                 </div>

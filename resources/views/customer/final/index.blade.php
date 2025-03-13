@@ -32,7 +32,7 @@
             <h4>Dịch vụ ăn uống</h4>
             <ul>
                 @forelse($food_orders as $food)
-                    <li>- Tên món: {{ $food->name }} - Số lượng: {{ $food->quantity }} - Giá: {{ $food->price * $food->quantity}} $</li>
+                    <li>Tên món: {{ $food->name }} - Số lượng: {{ $food->quantity }} - Giá: {{ $food->price * $food->quantity}} $</li>
                 @empty
                     <li>Không có món ăn nào được chọn.</li>
                 @endforelse
@@ -44,7 +44,7 @@
 
     <div class="card mt-4">
         <div class="card-body text-center">
-            <h4>Tổng tiền phải thanh toán: <span class="text-danger">{{ number_format($total_price) }} $</span></h4>
+            <h4>Tổng tiền phải thanh toán: <span class="text-danger">{{ number_format($total_price) }} VND</span></h4>
         </div>
     </div>
 </div>

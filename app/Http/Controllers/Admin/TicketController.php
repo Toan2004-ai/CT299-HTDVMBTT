@@ -10,6 +10,7 @@ use App\Models\City;
 use App\Models\Flight;
 use DataTables;
 use Illuminate\Http\Response;
+use Carbon\Carbon;
 
 class TicketController extends Controller
 {
@@ -87,11 +88,20 @@ class TicketController extends Controller
                     $td .= "</td>";
                     return $td;
                 })
+                ->editColumn('date', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDate($row->departure) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDate($row->arrival) . '</span></p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
                 ->editColumn('time', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="">';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDateWithTimezone($row->flight->departure) . '</span></p>';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDateWithTimezone($row->flight->arrival) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure_time') . ': <span class="fw-normal">' . Carbon::parse($row->departure_time)->format('H:i') . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival_time') . ': <span class="fw-normal">' . Carbon::parse($row->arrival_time)->format('H:i') . '</span></p>';
                     $td .= "</div>";
                     $td .= "</td>";
                     return $td;
@@ -148,6 +158,13 @@ class TicketController extends Controller
                 })
                 ->when($request->arrival, function ($query) use ($request) {
                     return $query->whereDate('arrival', $request->arrival);
+                })
+                ->when($request->departure, function ($query) use ($request) {
+                    return $query->whereTime('departure_time', ">=", $request->departure);
+                })
+                ->when($request->arrival, function ($query) use ($request) {
+                    return $query->whereTime('arrival_time', $request->arrival);
+                
                 });
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
@@ -181,11 +198,20 @@ class TicketController extends Controller
                     $td .= "</td>";
                     return $td;
                 })
+                ->editColumn('date', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDate($row->departure) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDate($row->arrival) . '</span></p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
                 ->editColumn('time', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="">';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDateWithTimezone($row->departure) . '</span></p>';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDateWithTimezone($row->arrival) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure_time') . ': <span class="fw-normal">' . Carbon::parse($row->departure_time)->format('H:i') . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival_time') . ': <span class="fw-normal">' . Carbon::parse($row->arrival_time)->format('H:i') . '</span></p>';
                     $td .= "</div>";
                     $td .= "</td>";
                     return $td;
@@ -241,6 +267,16 @@ class TicketController extends Controller
                     return $query->whereHas('flight', function ($query) use ($request) {
                         return $query->whereDate('arrival', $request->arrival);
                     });
+                })
+                ->when($request->departure, function ($query) use ($request) {
+                    return $query->whereHas('flight', function ($query) use ($request) {
+                        return $query->whereTime('departure_time', ">=", $request->departure);
+                    });
+                })
+                ->when($request->arrival, function ($query) use ($request) {
+                    return $query->whereHas('flight', function ($query) use ($request) {
+                        return $query->whereTime('arrival_time', $request->arrival);
+                    });
                 });
             return Datatables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
@@ -272,11 +308,20 @@ class TicketController extends Controller
                     $td .= "</td>";
                     return $td;
                 })
+                ->editColumn('date', function ($row) {
+                    $td = '<td>';
+                    $td .= '<div class="">';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDate($row->departure) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDate($row->arrival) . '</span></p>';
+                    $td .= "</div>";
+                    $td .= "</td>";
+                    return $td;
+                })
                 ->editColumn('time', function ($row) {
                     $td = '<td>';
                     $td .= '<div class="">';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.departure') . ': <span class="fw-normal">' . formatDateWithTimezone($row->flight->departure) . '</span></p>';
-                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival') . ': <span class="fw-normal">' . formatDateWithTimezone($row->flight->arrival) . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.departure_time') . ': <span class="fw-normal">' . Carbon::parse($row->departure_time)->format('H:i') . '</span></p>';
+                    $td .= '<p class="fw-bold">' . __('translation.flight.arrival_time') . ': <span class="fw-normal">' . Carbon::parse($row->arrival_time)->format('H:i') . '</span></p>';
                     $td .= "</div>";
                     $td .= "</td>";
                     return $td;
@@ -314,7 +359,7 @@ class TicketController extends Controller
                 ->first();
 
             if ($ticket) {
-                return $this->josnResponse(true, "You have already booked this flight", Response::HTTP_BAD_REQUEST);
+                return $this->josnResponse(true, "Bạn đã đặt chuyến bay thành công", Response::HTTP_BAD_REQUEST);
             }
 
             // create ticket

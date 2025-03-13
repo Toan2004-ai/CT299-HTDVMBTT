@@ -88,6 +88,7 @@
                 <th>#</th>
                 <th> @lang('translation.flight.flight_number')</th>
                 <th> @lang('translation.flight.origin')</th>
+                <th> @lang('translation.flight.date')</th>
                 <th> @lang('translation.flight.time')</th>
                 <th> Trạng thái</th>
                 <th> @lang('translation.actions')</th>
@@ -170,7 +171,14 @@
             data: 'route'
           },
           {
-            data: 'time'
+            data: 'date',
+            render: function (data, type, row) {
+        return $('<div>').html(data).text(); // Xử lý HTML
+    }
+          },
+          {
+            data: 'time',
+            searchable: false
           },
           {
             data: 'status'

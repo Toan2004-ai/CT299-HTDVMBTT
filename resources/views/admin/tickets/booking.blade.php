@@ -102,6 +102,7 @@
                 <th>#</th>
                 <th> @lang('translation.flight.flight_number')</th>
                 <th> @lang('translation.flight.route')</th>
+                <th> @lang('translation.flight.date')</th>
                 <th> @lang('translation.flight.time')</th>
                 <th> @lang('translation.flight.seats')</th>
                 <th> @lang('translation.actions')</th>
@@ -191,6 +192,12 @@
           {
             data: 'route',
             searchable: false
+          },
+          {
+            data: 'date',
+            render: function (data, type, row) {
+                return $('<div>').html(data).text(); // Xử lý HTML
+            }
           },
           {
             data: 'time',

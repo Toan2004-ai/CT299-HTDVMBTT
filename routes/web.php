@@ -14,9 +14,11 @@ use App\Http\Controllers\Admin\{
     TicketController,
     SeatSelectionController,
     FoodController,
-    FinalController
+    FinalController,
+    PaymentController,
+    MailController
 };
-
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\SandboxController;
 use App\Http\Controllers\SidebarControler;
 
@@ -50,6 +52,20 @@ Route::group(["prefix" => 'dashboard'], function () {
         //final
         Route::get('/customer/final', [FinalController::class, 'index'])->name('customer.final.index');
 
+        //vnpay
+        Route::post('/vnpay_payment',[PaymentController::class,'vnpay_payment']);
+
+        //send mail
+        Route::get('/test-email', function () {
+            Mail::raw('Test email', function ($message) {
+                $message->to('ttranphamthai@gmail.com')->subject('Test Mail');
+            });
+        
+            return 'Email sent!';
+        });
+        
+
+        
         /* ================== ADMIN ROUTES ================== */
         Route::group(['middleware' => 'admin'], function () {
             Route::get('/', [HomeController::class, 'root'])->name('root');

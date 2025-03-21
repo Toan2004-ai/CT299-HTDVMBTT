@@ -9,13 +9,14 @@ use App\Models\Flight;
 use App\Models\Plane;
 use App\Models\Ticket;
 use App\Models\User;
+use Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Redirect;
 class HomeController extends Controller
 {
     /**

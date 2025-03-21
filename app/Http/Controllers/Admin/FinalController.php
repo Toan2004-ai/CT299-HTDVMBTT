@@ -41,7 +41,7 @@ $food_total = $food_orders->sum(fn($food) => $food->quantity * $food->price);
 
         // Tính tổng tiền ghế ngồi
         $seat_total = $seats->sum(function ($seat) {
-            return $seat->seat_type == 'business' ? 600 : 200;
+            return $seat->seat_type == 'business' ? 6000000 : 2000000;
         });
 
         // Tính tổng tiền thức ăn

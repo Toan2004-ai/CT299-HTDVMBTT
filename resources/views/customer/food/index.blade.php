@@ -7,7 +7,7 @@
     </div>
 @endif
 <main class="booking-part1">
-    <h2 class="booking-title">Food</h2>
+    <h2 class="booking-title">Dịch vụ</h2>
     <form action="{{ route('customer.food.order') }}" method="POST">
         @csrf
         <div class="row justify-content-center">
@@ -16,11 +16,11 @@
                     <div class="card food-card text-center">
                         <img src="{{ asset($food['image']) }}" alt="image" class="food-img" height="150" width="150">
                         <h5 class="food-title">{{ $food['name'] }}</h5>
-                        <p class="food-price">₹{{ $food['price'] }}</p>
+                        <p class="food-price">{{ $food['price'] }}</p>
                         
                         <!-- Thêm checkbox để chọn món -->
                         <input type="checkbox" name="food[{{ $food['id'] }}]" value="{{ $food['id'] }}" class="food-checkbox" id="food-{{ $food['id'] }}">
-                        <label for="food-{{ $food['id'] }}" class="add-btn">Add</label>
+                        <label for="food-{{ $food['id'] }}" class="add-btn">Thêm</label>
                         
                         <!-- Thêm input số lượng (chỉ nhập khi checkbox được chọn) -->
                         <input type="number" name="quantity[{{ $food['id'] }}]" value="1" min="1" class="food-quantity" disabled>
